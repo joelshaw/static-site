@@ -1,0 +1,24 @@
+{
+  "name": "static-site",
+  "version": "1.0.0",
+  "description": "A static site starter build with Webpack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joelshaw/static-site.git"
+  },
+  "author": "Joel Shaw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joelshaw/static-site/issues"
+  },
+  "homepage": "https://github.com/joelshaw/static-site#readme",
+  "dependencies": {
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.1"
+  }
+}
