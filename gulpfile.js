@@ -2,7 +2,8 @@ const gulp = require('gulp'),
       browserSync = require('browser-sync'),
       concat = require('gulp-concat'),
       rename = require('gulp-rename'),
-      sass = require('gulp-sass');
+      sass = require('gulp-sass'),
+      uglify = require('gulp-uglify');
 
 const server = browserSync.create();
 
@@ -23,7 +24,8 @@ const paths = {
 
 function scripts() {
      return gulp
-          .src(paths.scripts.src)
+          .src(paths.scripts.src, { sourcemaps: true })
+          .pipe(uglify())
           .pipe(concat('build.min.js'))
           .pipe(gulp.dest(paths.scripts.dest));
 }
