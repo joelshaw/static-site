@@ -1,11 +1,11 @@
-var  gulp = require('gulp'),
+const  gulp = require('gulp'),
      browserSync = require('browser-sync'),
      rename = require('gulp-rename'),
      sass = require('gulp-sass');
 
-var server = browserSync.create();
+const server = browserSync.create();
 
-var paths = {
+const paths = {
      styles: {
        src: 'src/scss/**/*.scss',
        dest: 'dist/css/'
@@ -56,6 +56,6 @@ function watch() {
 exports.styles = styles;
 exports.watch = watch;
 
-var build = gulp.parallel(styles, watch)
+const build = gulp.parallel(styles, watch)
 
 exports.default = build;
