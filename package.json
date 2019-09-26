@@ -1,9 +1,12 @@
 {
   "name": "static-site",
   "version": "1.0.0",
-  "description": "A static site starter build with Webpack",
+  "description": "A static site starter built with Gulp",
   "main": "index.js",
   "scripts": {
+    "build": "gulp build",
+    "prod": "",
+    "serve": "gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,8 +20,9 @@
   },
   "homepage": "https://github.com/joelshaw/static-site#readme",
   "dependencies": {
-    "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.8.1"
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2"
   }
 }
