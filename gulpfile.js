@@ -46,7 +46,7 @@ function styles() {
 function watch() {
      browserSync.init({
           server: {
-               baseDir: './src'
+               baseDir: './dist'
           }
      });
 
@@ -56,6 +56,5 @@ function watch() {
 exports.styles = styles;
 exports.watch = watch;
 
-const build = gulp.parallel(styles, watch)
-
+const build = gulp.parallel(styles, watch);
 exports.default = build;
