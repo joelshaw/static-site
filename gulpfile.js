@@ -22,12 +22,20 @@ const paths = {
      }
 };
 
+function html() {
+     return gulp 
+          .src(paths.html.src)
+          .pipe(gulp.dest(paths.html.dest))
+          .pipe(browserSync.stream());
+}
+
 function scripts() {
      return gulp
           .src(paths.scripts.src, { sourcemaps: true })
           .pipe(uglify())
           .pipe(concat('build.min.js'))
-          .pipe(gulp.dest(paths.scripts.dest));
+          .pipe(gulp.dest(paths.scripts.dest))
+          .pipe(browserSync.stream());
 }
 
 function styles() {
@@ -51,13 +59,15 @@ function watch() {
           }
      });
 
+     gulp.watch(paths.html.src, html);
+     gulp.watch(paths.scripts.src, scripts);
      gulp.watch(paths.styles.src, styles);
-     gulp.watch(paths.html.src);
 }
 
+exports.html = html;
 exports.scripts = scripts;
 exports.styles = styles;
 exports.watch = watch;
 
-const build = gulp.parallel(scripts, styles, watch);
+const build = gulp.parallel(html, scripts, styles, watch);
 exports.default = build;
