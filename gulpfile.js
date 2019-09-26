@@ -1,6 +1,8 @@
 const gulp = require('gulp'),
       browserSync = require('browser-sync'),
       concat = require('gulp-concat'),
+      imagemin = require('gulp-imagemin'),
+      imageminMozjpeg = require('imagemin-mozjpeg'),
       rename = require('gulp-rename'),
       sass = require('gulp-sass'),
       uglify = require('gulp-uglify');
@@ -8,17 +10,21 @@ const gulp = require('gulp'),
 const server = browserSync.create();
 
 const paths = {
-     styles: {
-          src: 'src/scss/**/*.scss',
-          dest: 'dist/css/'
-     },
-     scripts: {
-          src: 'src/js/**/*.js',
-          dest: 'dist/js/'
+     imgs: {
+          src: 'src/img/*.{gif,png,jpg}',
+          dest: 'dist/assets/img'
      },
      html: {
           src: 'src/**/*.html',
           dest: 'dist/'
+     },
+     styles: {
+          src: 'src/scss/**/*.scss',
+          dest: 'dist/assets/css/'
+     },
+     scripts: {
+          src: 'src/js/**/*.js',
+          dest: 'dist/assets/js/'
      }
 };
 
@@ -27,6 +33,17 @@ function html() {
           .src(paths.html.src)
           .pipe(gulp.dest(paths.html.dest))
           .pipe(browserSync.stream());
+}
+
+function images() {
+     return gulp
+          .src(paths.imgs.src)
+          .pipe(imagemin([
+               imageminMozjpeg({
+                    quality: 75
+               })
+          ]))
+          .pipe(gulp.dest(paths.imgs.dest));
 }
 
 function scripts() {
@@ -64,10 +81,11 @@ function watch() {
      gulp.watch(paths.styles.src, styles);
 }
 
+exports.images = images;
 exports.html = html;
 exports.scripts = scripts;
 exports.styles = styles;
 exports.watch = watch;
 
-const build = gulp.parallel(html, scripts, styles, watch);
+const build = gulp.parallel(images, html, scripts, styles, watch);
 exports.default = build;
